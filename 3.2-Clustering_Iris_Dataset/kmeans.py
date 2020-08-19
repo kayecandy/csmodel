@@ -52,6 +52,12 @@ class KMeans(object):
 
         # TODO: Complete this function.
 
+        # Step 0: Initialize centroid dataframe
+        # I've added a centroid reinitialization step so that calling this method
+        # several times would always result to k number of centroids instead
+        # of appending k centroids per call
+        self.centroids = pd.DataFrame(columns=self.columns)
+
         # Step 1: Randomly select a data point from the dataset as the first
         # centroid.
         index = np.random.randint(low=0, high=self.num_observations)
@@ -76,7 +82,7 @@ class KMeans(object):
             # Hint: Use the get_euclidean_distance() function that we have
             # defined in this class.
             for j in range(len(self.centroids)):
-                pass
+                distances[j] = self.get_euclidean_distance(sliced_data, self.centroids.iloc[j]);
 
             # Step 3: Select the data point with the maximum distance from the
             # nearest centroid as the next centroid.
@@ -86,6 +92,8 @@ class KMeans(object):
             # from the nearest centroid and store it to variable index.
             # Hint: Use pandas.DataFrame.min() and pandas.Series.idxmax()
             # functions.
+            index = distances.min(axis=1).idxmax()
+
 
             # Append the selected data point to the set of centroids.
             point = data.iloc[index, self.start_var:self.end_var]
