@@ -153,15 +153,18 @@ class KMeans(object):
         # distance of data point 3 from centroid 0.
         distances = pd.DataFrame()
         sliced_data = data.iloc[:, self.start_var:self.end_var]
-        # for i in range(self.k):
+        for i in range(self.k):
             # TODO: Get the Euclidean distance of the data from each centroid
             # then store it to a column in the DataFrame distances
             # Hint: Use the get_euclidean_distance() function that we have
             # defined in this class.
 
+            distances[i] = self.get_euclidean_distance(sliced_data, self.centroids.iloc[i])
+
         # TODO: get the index of the lowest distance for each data point and
         # assign it to a Series named groups
         # Hint: Use pandas.DataFrame.idxmin() function.
+        groups = distances.idxmin(axis=1)
 
         return groups.astype('int32')
 
