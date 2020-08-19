@@ -123,7 +123,7 @@ class KMeans(object):
 
         # TODO: Implement this function based on the documentation.
         # Hint: Use the pandas.Series.sum() and the numpy.sqrt() functions.
-        pass
+        return np.sqrt(np.square(point2 - point1).sum(axis=1 if isinstance(point1, pd.DataFrame) else 0));
 
     def group_observations(self, data):
         """Returns the clusters of each data point in the dataset given
