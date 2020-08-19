@@ -226,16 +226,20 @@ class KMeans(object):
             # store it in variable groups.
             # Hint: Use the group_observation() function that we have defined
             # in this class.
+            groups = self.group_observations(data)
 
             # TODO: Adjust the centroids based on the current clusters and
             # store it in variable centroids.
             # Hint: Use the adjust_centroids() function that we have defined
             # in this class.
+            centroids = self.adjust_centroids(data, groups)
 
             # TODO: Check if there are changes with the clustering of the
             # data points.
+            flag_groups = cur_groups.equals(groups)
 
             # TODO: Check if there are changes with the values of the centroids
+            flag_centroids = self.centroids.equals(centroids)
 
             cur_groups = groups
             self.centroids = centroids
