@@ -26,7 +26,7 @@ class RuleMiner(object):
         # TODO: Implement this function based on the documentation.
         # Hint: Use the pandas.DataFrame.all() and the pandas.DataFrame.sum()
         # function.
-        pass
+        return data[itemset].all(axis=1).sum()
 
     def merge_itemsets(self, itemsets):
         """Returns a list of merged itemsets. If one itemset of size 2
