@@ -183,13 +183,15 @@ class KMeans(object):
         """
 
         # TODO: Complete this function.
-
-        grouped_data = pd.concat([data, groups.rename('group')], axis=1)
+        sliced_data = data.iloc[:, self.start_var:self.end_var]
+        grouped_data = pd.concat([sliced_data, groups.rename('group')], axis=1)
 
         # TODO: Group the data points together using the group column, then
         # get their mean and store to variable centroids.
         # Hint: use pandas.DataFrame.groupby and
         # pandas.core.groupby.GroupBy.mean functions.
+
+        centroids = grouped_data.groupby('group').agg('mean')
 
         return centroids
 
