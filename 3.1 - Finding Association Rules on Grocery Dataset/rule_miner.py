@@ -145,7 +145,7 @@ class RuleMiner(object):
         # TODO: Implement this function based on the documentation.
         # Hint: Use the get_support() function that we have defined in this
         # class.
-        pass
+        return self.get_support(data, rule[0] + rule[1]) / self.get_support(data, rule[0])
 
     def get_association_rules(self, data):
         """Returns a list of association rules with support greater than or
