@@ -162,6 +162,7 @@ class RuleMiner(object):
 
         # TODO: Call the get_frequent_itemsets() function that we have defined
         # in this class, and assign the result to the variable itemsets.
+        itemsets = self.get_frequent_itemsets(data)
 
         rules = []
         for itemset in itemsets:
@@ -169,7 +170,7 @@ class RuleMiner(object):
             # list rules
             # Hint: Use the get_rules() function that we have defined in this
             # class.
-            pass
+            rules += self.get_rules(itemset)
 
         association_rules = []
         for rule in rules:
@@ -178,6 +179,7 @@ class RuleMiner(object):
             # greater than or equal to the confidence threshold confidence_t
             # Hint: Use the get_confidence() function that we have defined in
             # this class.
-            pass
+            if self.get_confidence(data, rule) >= self.confidence_t:
+                association_rules.append(rule)
 
         return association_rules
