@@ -117,7 +117,8 @@ class RuleMiner(object):
                 # greater than or equal to the support threshold support_t
                 # Hint: Use the get_support() function that we have defined in
                 # this class.
-                pass
+                if self.get_support(data, itemset) >= self.support_t:
+                    new_itemsets.append(itemset)
 
             if len(new_itemsets) != 0:
                 old_itemsets = new_itemsets
