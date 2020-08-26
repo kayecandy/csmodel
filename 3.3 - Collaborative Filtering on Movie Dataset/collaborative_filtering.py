@@ -145,11 +145,11 @@ class CollaborativeFiltering(object):
         # TODO: Get the INDICES of the top k most similar items based on
         # the cosine similarity values
         # HINT: Use pandas.Series.nlargest() function.
-        indices = sim.nlargest(self.k)
+        k_similar = sim.nlargest(self.k)
 
 
         # TODO: Return 2 values. See function comment
-        return indices
+        return [k_similar.index, k_similar]
 
     def get_rating(self, data, index, column):
         """Returns the extrapolated rating for the item in row index from the
