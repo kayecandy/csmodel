@@ -109,7 +109,7 @@ class CollaborativeFiltering(object):
         ub = (vector1 * vector2).sum(axis=axis)
         lb = np.sqrt(np.square(vector1).sum(axis_v1)) * np.sqrt(np.square(vector2).sum(axis_v2))
 
-        
+
         return ub / lb 
 
 
@@ -133,18 +133,23 @@ class CollaborativeFiltering(object):
         # TODO: Normalize parameters data and vector
         # HINT: Use the normalize_data() function that we have defined in this
         # class
+        normalized_data = self.normalize_data(data, self.get_row_mean(data))
+        normalized_vector = self.normalize_data(vector, self.get_row_mean(vector))
 
         # TODO: Get the cosine similarity between the normalized data and
         # vector
         # HINT: Use the get_cosine_similarity() function that we have defined
         # in this class
+        sim = self.get_cosine_similarity(normalized_data, normalized_vector)
 
         # TODO: Get the INDICES of the top k most similar items based on
         # the cosine similarity values
         # HINT: Use pandas.Series.nlargest() function.
+        indices = sim.nlargest(self.k)
+
 
         # TODO: Return 2 values. See function comment
-        pass
+        return indices
 
     def get_rating(self, data, index, column):
         """Returns the extrapolated rating for the item in row index from the
