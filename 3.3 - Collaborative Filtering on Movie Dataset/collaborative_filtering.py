@@ -60,7 +60,16 @@ class CollaborativeFiltering(object):
         # Normalize the parameter data by parameter row_mean.
         # HINT: Use pandas.DataFrame.subtract() or pandas.Series.subtract()
         # functions.
-        pass
+
+        if isinstance(data, pd.DataFrame) and isinstance(row_mean, pd.Series):
+            if data.shape[0] != row_mean.shape[0]:
+                raise Exception("Parameter shapes are incompatible")
+        elif isinstance(data, pd.Series) and isinstance(row_mean, (float, int)):
+            pass
+        else:
+            raise Exception("Parameter datatypes are invalid")
+
+        return data.subtract(row_mean, axis=0)
 
     def get_cosine_similarity(self, vector1, vector2):
         """Returns the cosine similarity between two vectors. These vectors can
