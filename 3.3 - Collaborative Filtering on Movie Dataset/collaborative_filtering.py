@@ -178,8 +178,14 @@ class CollaborativeFiltering(object):
         # TODO: Get top k items that are similar to the parameter vector
         # HINT: Use the get_k_similar() function that we have defined in this
         # class
+        k_similar = self.get_k_similar(new_data, vector)
 
         # TODO: Compute for the rating using the similarity values and the raw
         # ratings for the k similar items.
+        
+        raw = new_data.loc[k_similar[0]].iloc[:,column]
 
-        return rating
+        ub = (raw * k_similar[1]).sum()
+        lb = k_similar[1].sum()
+
+        return ub/lb
