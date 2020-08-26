@@ -27,12 +27,13 @@ class CollaborativeFiltering(object):
         # TODO: Implement this function based on the documentation.
 
         # TODO: Check if the parameter data is a Series or a DataFrame
+        axis = 1 if isinstance(data, pd.DataFrame) else 0
 
         # TODO: return the mean of each row if the parameter data is a
         # DataFrame. Return the mean of the Series if the parameter data is a
         # Series.
         # Hint: Use pandas.DataFrame.mean() or pandas.Series.mean() functions.
-        pass
+        return data.mean(axis=axis)
 
     def normalize_data(self, data, row_mean):
         """Returns the data normalized by subtracting the row mean.
