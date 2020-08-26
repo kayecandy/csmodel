@@ -98,12 +98,20 @@ class CollaborativeFiltering(object):
         # TODO: Implement this function based on the documentation.
 
         # TODO: Check if the parameter data is a Series or a DataFrame
+        axis_v1 = 1 if isinstance(vector1, pd.DataFrame) else 0
+        axis_v2 = 1 if isinstance(vector2, pd.DataFrame) else 0
+        axis = axis_v1 or axis_v2
 
         # TODO: Compute the cosine similarity between the two parameters.
         # HINT: Use np.sqrt() and pandas.DataFrame.sum() and/or
         # pandas.Series.sum() functions.
 
-        pass
+        ub = (vector1 * vector2).sum(axis=axis)
+        lb = np.sqrt(np.square(vector1).sum(axis_v1)) * np.sqrt(np.square(vector2).sum(axis_v2))
+
+        
+        return ub / lb 
+
 
     def get_k_similar(self, data, vector):
         """Returns two values - the indices of the top k similar items to the
