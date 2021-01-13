@@ -94,7 +94,6 @@ class KMeans(object):
             # functions.
             index = distances.min(axis=1).idxmax()
 
-
             # Append the selected data point to the set of centroids.
             point = data.iloc[index, self.start_var:self.end_var]
             self.centroids = self.centroids.append(point, ignore_index=True)
@@ -133,6 +132,7 @@ class KMeans(object):
         # Hint: Use the pandas.Series.sum() and the numpy.sqrt() functions.
         return np.sqrt(np.square(point2 - point1).sum(axis=1 if isinstance(point1, pd.DataFrame) else 0))
 
+
     def group_observations(self, data):
         """Returns the clusters of each data point in the dataset given
         the current set of centroids. Suppose this function is given 100 data
@@ -161,6 +161,7 @@ class KMeans(object):
 
             distances[i] = self.get_euclidean_distance(sliced_data, self.centroids.iloc[i])
 
+
         # TODO: get the index of the lowest distance for each data point and
         # assign it to a Series named groups
         # Hint: Use pandas.DataFrame.idxmin() function.
@@ -184,7 +185,7 @@ class KMeans(object):
 
         # TODO: Complete this function.
         sliced_data = data.iloc[:, self.start_var:self.end_var]
-        grouped_data = pd.concat([sliced_data, groups.rename('group')], axis=1)
+        grouped_data = pd.concat([data, groups.rename('group')], axis=1)
 
         # TODO: Group the data points together using the group column, then
         # get their mean and store to variable centroids.
